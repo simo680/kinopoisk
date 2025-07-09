@@ -1,11 +1,12 @@
-import "./App.css";
+import { Outlet } from "react-router-dom";
+import { Layout } from "./layout";
 
-function App() {
+export const App = () => {
   return (
     <>
-      <h1>Hello World!</h1>
+      <Layout>
+        <Outlet />
+      </Layout>
     </>
   );
-}
-
-export default App;
+};
