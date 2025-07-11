@@ -1,30 +1,16 @@
-import { useEffect, useState, useCallback } from "react";
-import type { Movie } from "../../api/type";
-import { getMovies } from "../../api/movies";
+import { observer } from "mobx-react-lite";
+import { useCallback, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { MovieItem } from "../../components/MovieItem";
+import MoviesStore from "../../store/MoviesStore";
 
 import style from "./HomePage.module.scss";
 
-export const HomePage = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [fetching, setFetching] = useState(false);
-
-  const fetchMovies = useCallback(async () => {
-    setFetching(true);
-
-    const data = await getMovies(currentPage);
-
-    if (data?.docs) {
-      setMovies((prev) => [...prev, ...data.docs]);
-      setCurrentPage((prev) => prev + 1);
-    }
-
-    setFetching(false);
-  }, [currentPage]);
+export const HomePage = observer(() => {
+  const { movies, getMoviesAction } = MoviesStore;
 
   useEffect(() => {
-    fetchMovies();
+    getMoviesAction();
   }, []);
 
   const scrollHandler = useCallback(() => {
@@ -33,13 +19,14 @@ export const HomePage = () => {
 
     const threshold = document.documentElement.offsetHeight - 100;
 
-    if (scrollPosition >= threshold && !fetching) {
-      fetchMovies();
+    if (scrollPosition >= threshold) {
+      getMoviesAction();
     }
-  }, [fetchMovies, fetching]);
+  }, [getMoviesAction]);
 
   useEffect(() => {
     window.addEventListener("scroll", scrollHandler);
+
     return () => {
       window.removeEventListener("scroll", scrollHandler);
     };
@@ -48,9 +35,10 @@ export const HomePage = () => {
   return (
     <div className={style.container}>
       {movies.map((movie) => (
-        <MovieItem key={movie.id} movie={movie} />
+        <Link key={movie.id} to={`/movie/${movie.id}`}>
+          <MovieItem movie={movie} />
+        </Link>
       ))}
-      {fetching && <div>Загрузка...</div>}
     </div>
   );
-};
+});

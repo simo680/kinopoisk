@@ -1,7 +1,7 @@
 import { kinoApi } from "./kinopoisk";
 import type { Movie, Movies } from "./type";
 
-export const getMovies = async (page: number = 1, limit: number = 50) => {
+export const getMovies = async (page: number = 1, limit: number = 10) => {
   try {
     const response = await kinoApi.get<Movies>("/movie", {
       params: {

@@ -1,9 +1,7 @@
 export type Movies = {
   docs: Movie[];
-  total: number;
   limit: number;
   page: number;
-  pages: number;
 };
 
 export type Movie = {

@@ -7,18 +7,24 @@ import style from "./MovieDetailPage.module.scss";
 
 export const MovieDetailPage = () => {
   const [movie, setMovie] = useState<Movie>();
+  const [loading, setLoading] = useState(true);
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
     const fetchMovie = async () => {
+      setLoading(true);
       const data = await getMovieById(Number(id));
-      if (data) setMovie(data);
+      if (data) {
+        setMovie(data);
+        setLoading(false);
+      }
     };
 
     fetchMovie();
   }, [id]);
 
-  if (!movie) return <div>Загрузка...</div>;
+  if (loading) return <div>Загрузка...</div>;
+  if (!movie) return <div>Ошибка загрузки</div>;
 
   return (
     <div className={style.container}>
