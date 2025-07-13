@@ -1,5 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx";
-// import { getMovies } from "../api/movies";
+import { getMovies } from "../api/movies";
 import type { Movie } from "../api/type";
 import { MoviesMock } from "../mocks/MoviesMocks";
 
@@ -9,15 +9,20 @@ class MoviesStore {
   isLoading: boolean = false;
   error: string | null = null;
 
+  // selectedGenres: string[] = [];
+  // ratingRange: [number, number] = [0, 10];
+  // yearRange: [number, number] = [1990, new Date().getFullYear()];
+
   constructor() {
     makeAutoObservable(this);
   }
 
   getMoviesAction = async () => {
+    if (this.isLoading) return;
+    this.isLoading = true;
     try {
-      this.isLoading = true;
-      // const res = await getMovies(this.currentPage);
-      const res = MoviesMock
+       const res = await getMovies(this.currentPage);
+      // const res = MoviesMock;
 
       runInAction(() => {
         if (res?.docs) {

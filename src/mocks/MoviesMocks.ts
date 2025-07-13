@@ -13,13 +13,10 @@ export const MoviesMock: Movies = {
         kp: 7.5,
       },
       poster: {
-        url: "https://via.placeholder.com/200x300?text=Movie+1",
+        url: "",
       },
       description: "Описание Mock Movie 1",
-      genres: [
-        { name: "боевик" },
-        { name: "драма" },
-      ],
+      genres: [{ name: "боевик" }, { name: "драма" }],
     },
     {
       id: 2,
@@ -30,12 +27,10 @@ export const MoviesMock: Movies = {
         kp: 6.8,
       },
       poster: {
-        url: "https://via.placeholder.com/200x300?text=Movie+2",
+        url: "",
       },
       description: "Описание Mock Movie 2",
-      genres: [
-        { name: "комедия" },
-      ],
+      genres: [{ name: "комедия" }],
     },
     {
       id: 3,
@@ -46,13 +41,10 @@ export const MoviesMock: Movies = {
         kp: 8.2,
       },
       poster: {
-        url: "https://via.placeholder.com/200x300?text=Movie+3",
+        url: "",
       },
       description: "Описание Mock Movie 3",
-      genres: [
-        { name: "триллер" },
-        { name: "драма" },
-      ],
+      genres: [{ name: "триллер" }, { name: "драма" }],
     },
   ],
   limit: 10,

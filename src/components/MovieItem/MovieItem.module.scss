@@ -1,7 +1,59 @@
 .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   width: 250px;
+  color: white;
+
+  .title {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    text-align: center;
+  }
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+
+    .favouriteBtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      outline: none;
+      background: none;
+      cursor: pointer;
+    }
+  }
+
+  .poster,
+  .noPoster {
+    width: 100%;
+    height: 351px;
+    object-fit: cover;
+  }
 
   .poster {
-    width: 250px;
+    width: 100%;
+  }
+
+  .noPoster {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #555;
+  }
+
+  .favouriteBtnModal {
+    padding: 20px;
   }
 }

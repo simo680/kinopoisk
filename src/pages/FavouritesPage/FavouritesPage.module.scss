@@ -1,0 +1,11 @@
+.status {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 250px);
+  justify-content: space-evenly;
+  gap: 20px;
+}

@@ -1,12 +1,13 @@
 import type { PropsWithChildren } from "react";
 import { Header } from "../components/Header";
-import { Outlet } from "react-router-dom";
+
+import style from './Layout.module.scss'
 
 export const Layout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <main className={style.main}>{children}</main>
     </>
   );
 };

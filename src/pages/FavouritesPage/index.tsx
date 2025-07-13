@@ -8,7 +8,11 @@ export const FavouritesPage = observer(() => {
   const { favourites } = FavouritesStore;
 
   if (favourites.length === 0) {
-    return <div>В избранном пока пусто</div>;
+    return (
+      <div className={style.status}>
+        <h1>В избранном пока пусто.</h1>
+      </div>
+    );
   }
 
   return (

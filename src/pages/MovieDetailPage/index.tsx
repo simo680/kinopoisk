@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import type { Movie } from "../../api/type";
 
 import style from "./MovieDetailPage.module.scss";
+import { MoviesMock } from "../../mocks/MoviesMocks";
 
 export const MovieDetailPage = () => {
   const [movie, setMovie] = useState<Movie>();
@@ -13,7 +14,8 @@ export const MovieDetailPage = () => {
   useEffect(() => {
     const fetchMovie = async () => {
       setLoading(true);
-      const data = await getMovieById(Number(id));
+      // const data = await getMovieById(Number(id));
+      const data = MoviesMock.docs.find((movie) => movie.id === Number(id));
       if (data) {
         setMovie(data);
         setLoading(false);

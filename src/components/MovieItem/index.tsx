@@ -2,9 +2,10 @@ import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import type { Movie } from "../../api/type";
 import { Modal } from "../Modal";
+import FavouritesStore from "../../store/FavouritesStore";
+import HeartIcon from "../../assets/Heart.svg?react";
 
 import style from "./MovieItem.module.scss";
-import FavouritesStore from "../../store/FavouritesStore";
 
 type MovieItemProps = {
   movie: Movie;
@@ -30,29 +31,39 @@ export const MovieItem = observer(({ movie }: MovieItemProps) => {
 
   return (
     <div className={style.container}>
-      {movie.poster?.url && (
+      <h3 className={style.title}>{movie.name || "Нет имени"}</h3>
+
+      {movie.poster?.url ? (
         <img
           className={style.poster}
           src={movie.poster.url}
           alt={`Фон фильма ${movie.name}`}
         />
+      ) : (
+        <div className={style.noPoster}>Нет изображения</div>
       )}
-      <h3>{movie.name || "нет имени"}</h3>
-      <p>{movie.year || "не указана дата"} </p>
-      <button
-        onClick={(e) => {
-          e.stopPropagation(); 
-          e.preventDefault(); 
-          handleOpenModal();
-        }}
-      >
-        апвп
-      </button>
+      <div className={style.info}>
+        <p className="">{movie.year || "Не указана дата"} </p>
+        <p>{movie.rating.kp || "0"}</p>
+        <button
+          className={style.favouriteBtn}
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            handleOpenModal();
+          }}
+        >
+          <HeartIcon />
+        </button>
+      </div>
 
       {isOpen && (
         <Modal onClose={handleCloseModal}>
-          <p>{movie.name}</p>
-          <button onClick={handleAddToFavourites}>
+          <h1>{movie.name}</h1>
+          <button
+            className={style.favouriteBtnModal}
+            onClick={handleAddToFavourites}
+          >
             {isFavourite(movie.id)
               ? "Удалить из избранного"
               : "Добавить в избранное"}
