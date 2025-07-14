@@ -5,7 +5,7 @@ import style from "./header.module.scss";
 export const Header = () => {
   return (
     <header className={style.header}>
-      <img className={style.logo} src="../assets/kinopoisk.jpg" alt="логотип кинопоиска" />
+      <img className={style.logo} src="./kinopoisk.jpg" alt="логотип кинопоиска" />
       <ul className={style.list}>
         <li>
           <Link to="/">Главная страница</Link>

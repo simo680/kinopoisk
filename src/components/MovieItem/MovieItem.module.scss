@@ -3,15 +3,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   width: 250px;
   color: white;
 
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
   .title {
     display: flex;
+    justify-content: center;
+    text-align: center;
     align-items: center;
     height: 50px;
-    text-align: center;
   }
 
   .info {
@@ -41,10 +46,6 @@
     object-fit: cover;
   }
 
-  .poster {
-    width: 100%;
-  }
-
   .noPoster {
     display: flex;
     justify-content: center;
@@ -53,7 +54,17 @@
     background-color: #555;
   }
 
-  .favouriteBtnModal {
-    padding: 20px;
+  .link {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
+}
+
+.favouriteBtnModal {
+  border: 0px solid transparent;
+  padding: 20px;
+  color: white;
+  background-color: #282828;
+  cursor: pointer;
 }

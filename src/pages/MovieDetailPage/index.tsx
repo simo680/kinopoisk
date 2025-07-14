@@ -14,8 +14,8 @@ export const MovieDetailPage = () => {
   useEffect(() => {
     const fetchMovie = async () => {
       setLoading(true);
-      // const data = await getMovieById(Number(id));
-      const data = MoviesMock.docs.find((movie) => movie.id === Number(id));
+      const data = await getMovieById(Number(id));
+      //const data = MoviesMock.docs.find((movie) => movie.id === Number(id));
       if (data) {
         setMovie(data);
         setLoading(false);
@@ -25,24 +25,32 @@ export const MovieDetailPage = () => {
     fetchMovie();
   }, [id]);
 
-  if (loading) return <div>Загрузка...</div>;
-  if (!movie) return <div>Ошибка загрузки</div>;
+  if (loading) return <div className={style.loading}>Загрузка...</div>;
+  if (!movie) return <div className={style.error}>Ошибка загрузки</div>;
 
   return (
     <div className={style.container}>
-      <img
-        className={style.poster}
-        src={movie.poster.url}
-        alt={`Постер фильма ${movie.name}`}
-      />
-      <h1>{movie.name}</h1>
-      <p>{movie.description}</p>
-      <p>{movie.rating.kp}</p>
-      <p>{movie.year}</p>
-      <div>
-        {movie.genres.map((genre) => (
-          <span key={genre.name}>{genre.name}</span>
-        ))}
+      <div className={style.wrapper}>
+        <img
+          className={style.poster}
+          src={movie.poster.url}
+          alt={`Постер фильма ${movie.name}`}
+        />
+        <div className={style.info}>
+          <h1 className={style.title}>{movie.name}</h1>
+          <p className={style.year}>{movie.year}</p>
+          <p className={style.description}>{movie.description}</p>
+          <div className={style.genres}>
+            {movie.genres.map((genre) => (
+              <span className={style.genre} key={genre.name}>
+                {genre.name}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className={style.rating}>
+          <p className={style.ratingName}>{movie.rating.kp}</p>
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { observer } from "mobx-react-lite";
-import FavouritesStore from "../../store/FavouritesStore";
 import { MovieItem } from "../../components/MovieItem";
+import FavouritesStore from "../../store/FavouritesStore";
+import { Link } from "react-router-dom";
 
 import style from "./FavouritesPage.module.scss";
 
@@ -18,7 +19,9 @@ export const FavouritesPage = observer(() => {
   return (
     <div className={style.container}>
       {favourites.map((movie) => (
-        <MovieItem key={movie.id} movie={movie} />
+        <Link to={`/movie/${movie.id}`}>
+          <MovieItem key={movie.id} movie={movie} />
+        </Link>
       ))}
     </div>
   );

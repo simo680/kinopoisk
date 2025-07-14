@@ -21,8 +21,8 @@ class MoviesStore {
     if (this.isLoading) return;
     this.isLoading = true;
     try {
-       const res = await getMovies(this.currentPage);
-      // const res = MoviesMock;
+      const res = await getMovies(this.currentPage);
+      //const res = MoviesMock;
 
       runInAction(() => {
         if (res?.docs) {

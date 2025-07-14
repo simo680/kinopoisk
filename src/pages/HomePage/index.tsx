@@ -32,10 +32,8 @@ export const HomePage = observer(() => {
     <div className={style.container}>
       <div className={style.list}>
         {movies.map((movie) => (
-          <div key={movie.id} className={style.itemWrapper}>
-            <Link to={`/movie/${movie.id}`}>
-              <MovieItem movie={movie} />
-            </Link>
+          <div key={movie.id}>
+            <MovieItem movie={movie} />
           </div>
         ))}
       </div>
