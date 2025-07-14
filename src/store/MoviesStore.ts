@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { getMovies } from "../api/movies";
 import type { Movie } from "../api/type";
-import { MoviesMock } from "../mocks/MoviesMocks";
+// import { MoviesMock } from "../mocks/MoviesMocks";
 
 class MoviesStore {
   movies: Movie[] = [];

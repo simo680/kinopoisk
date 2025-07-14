@@ -1,5 +1,3 @@
-// src/mocks/moviesMock.ts
-
 import type { Movies } from "../api/type";
 
 import darkKnightPoster from "../assets/batman.jpg";

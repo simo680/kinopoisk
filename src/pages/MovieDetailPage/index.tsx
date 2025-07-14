@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import type { Movie } from "../../api/type";
 
 import style from "./MovieDetailPage.module.scss";
-import { MoviesMock } from "../../mocks/MoviesMocks";
+// import { MoviesMock } from "../../mocks/MoviesMocks";
 
 export const MovieDetailPage = () => {
   const [movie, setMovie] = useState<Movie>();

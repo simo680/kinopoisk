@@ -1,6 +1,5 @@
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { MovieItem } from "../../components/MovieItem";
 import MoviesStore from "../../store/MoviesStore";
 
