@@ -8,6 +8,10 @@ import style from "./HomePage.module.scss";
 export const HomePage = observer(() => {
   const { movies, getMoviesAction, isLoading } = MoviesStore;
 
+  const Movies = Array.from(
+    new Map(movies.map((movie) => [movie.id, movie])).values()
+  );
+
   useEffect(() => {
     getMoviesAction();
   }, []);
@@ -30,7 +34,7 @@ export const HomePage = observer(() => {
   return (
     <div className={style.container}>
       <div className={style.list}>
-        {movies.map((movie) => (
+        {Movies.map((movie) => (
           <div key={movie.id}>
             <MovieItem movie={movie} />
           </div>

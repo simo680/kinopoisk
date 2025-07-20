@@ -9,16 +9,16 @@ class MoviesStore {
   isLoading: boolean = false;
   error: string | null = null;
 
-  // selectedGenres: string[] = [];
-  // ratingRange: [number, number] = [0, 10];
-  // yearRange: [number, number] = [1990, new Date().getFullYear()];
+  selectedGenres: string[] = [];
+  ratingRange: [number, number] = [0, 10];
+  yearRange: [number, number] = [1990, new Date().getFullYear()];
 
   constructor() {
     makeAutoObservable(this);
   }
 
   getMoviesAction = async () => {
-    if (this.isLoading) return;
+    
     this.isLoading = true;
     try {
       const res = await getMovies(this.currentPage);
