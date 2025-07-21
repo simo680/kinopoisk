@@ -18,7 +18,6 @@ class MoviesStore {
   }
 
   getMoviesAction = async () => {
-    
     this.isLoading = true;
     try {
       const res = await getMovies(this.currentPage);
@@ -38,6 +37,23 @@ class MoviesStore {
       });
     }
   };
+
+  get filteredMovies() {
+    if (this.selectedGenres.length === 0) {
+      return this.movies;
+    }
+    return this.movies.filter((movie) =>
+      movie.genres.some((genre) => this.selectedGenres.includes(genre.name))
+    );
+  }
+
+  get genresList(): string[] {
+    const allGenres = this.movies
+      .map((movie) => movie.genres.map((genre) => genre.name))
+      .flat();
+
+    return Array.from(new Set(allGenres)).sort();
+  }
 }
 
 export default new MoviesStore();

@@ -4,12 +4,13 @@ import { MovieItem } from "../../components/MovieItem";
 import MoviesStore from "../../store/MoviesStore";
 
 import style from "./HomePage.module.scss";
+import { Filter } from "../../components/Fliter";
 
 export const HomePage = observer(() => {
-  const { movies, getMoviesAction, isLoading } = MoviesStore;
+  const { filteredMovies, getMoviesAction, isLoading } = MoviesStore;
 
   const Movies = Array.from(
-    new Map(movies.map((movie) => [movie.id, movie])).values()
+    new Map(filteredMovies.map((movie) => [movie.id, movie])).values()
   );
 
   useEffect(() => {
@@ -33,6 +34,7 @@ export const HomePage = observer(() => {
 
   return (
     <div className={style.container}>
+      <Filter />
       <div className={style.list}>
         {Movies.map((movie) => (
           <div key={movie.id}>

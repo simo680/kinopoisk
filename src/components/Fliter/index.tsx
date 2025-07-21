@@ -1,9 +1,9 @@
-import { Select } from "@mui/material";
+import { GenreSelect } from "../ui/GenreSelect";
 
 export const Filter = () => {
   return (
     <div>
-      <Select />
+      <GenreSelect />
     </div>
   );
 };
