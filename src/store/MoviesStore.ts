@@ -10,23 +10,31 @@ class MoviesStore {
   error: string | null = null;
 
   selectedGenres: string[] = [];
-  ratingRange: [number, number] = [0, 10];
+  ratingRange: [number, number] = [1, 10];
   yearRange: [number, number] = [1990, new Date().getFullYear()];
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  getMoviesAction = async () => {
+  getMoviesAction = async (
+    page: number = this.currentPage,
+    genres: string[] = this.selectedGenres,
+    rating: [number, number] = this.ratingRange,
+    years: [number, number] = this.yearRange
+  ) => {
     this.isLoading = true;
     try {
-      const res = await getMovies(this.currentPage);
-      //const res = MoviesMock;
+      const res = await getMovies(page, 50, genres, rating, years);
 
       runInAction(() => {
         if (res?.docs) {
-          this.movies = [...this.movies, ...res.docs];
-          this.currentPage += 1;
+          if (page === 1) {
+            this.movies = res.docs;
+          } else {
+            this.movies = [...this.movies, ...res.docs];
+          }
+          this.currentPage = page + 1;
         }
       });
     } catch (error) {
@@ -54,6 +62,12 @@ class MoviesStore {
 
     return Array.from(new Set(allGenres)).sort();
   }
+
+  setYearRange = (range: [number, number]) => {
+    this.yearRange = range;
+    this.currentPage = 1;
+    this.getMoviesAction(1, this.selectedGenres, this.ratingRange, range);
+  };
 }
 
 export default new MoviesStore();
